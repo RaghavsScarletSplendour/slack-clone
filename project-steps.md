@@ -2,7 +2,7 @@
 
 ## Project Setup and Configuration
 
-- [ ] Step 1: Install required dependencies
+- [x] Step 1: Install required dependencies
   - **Task**: Install Supabase client, Drizzle ORM, and other necessary packages
   - **Files**:
     - `package.json`: Update with new dependencies
@@ -14,7 +14,7 @@
     npm install date-fns uuid @types/uuid
     ```
 
-- [ ] Step 2: Configure Supabase and database connection
+- [x] Step 2: Configure Supabase and database connection
   - **Task**: Set up Supabase connection utilities and configure environment variables
   - **Files**:
     - `.env.local`: Add Supabase URL and API key
@@ -30,14 +30,14 @@
     NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
     ```
 
-- [ ] Step 3: Install and configure Shadcn UI components
+- [x] Step 3: Install and configure Shadcn UI components
   - **Task**: Set up essential UI components using Shadcn UI library
   - **Files**:
     - `components/ui/*.tsx`: Create basic UI components
   - **Step Dependencies**: None
   - **User Instructions**:
     ```bash
-    npx shadcn-ui@latest add button input dropdown-menu dialog avatar tooltip tabs textarea card sheet popover scroll-area separator skeleton
+    npx shadcn@latest add button input dropdown-menu dialog avatar tooltip tabs textarea card sheet popover scroll-area separator skeleton command
     ```
 
 ## Database Schema
@@ -202,6 +202,7 @@
     - `components/messages/message-list.tsx`: Message list component
     - `components/messages/message-item.tsx`: Individual message component
     - `components/messages/message-timestamp.tsx`: Message timestamp display
+    - `components/messages/chat-container.tsx`: Main chat container component to organize the UI
   - **Step Dependencies**: Step 17
   - **User Instructions**: None
 
@@ -277,6 +278,7 @@
     - `components/direct-messages/dm-header.tsx`: DM conversation header
     - `app/(main)/[workspaceId]/dm/[conversationId]/page.tsx`: DM conversation page
     - `lib/actions/dm-actions.ts`: Functions for DM operations
+    - `components/direct-messages/dm-container.tsx`: DM chat container component
   - **Step Dependencies**: Step 24
   - **User Instructions**: None
 
@@ -359,6 +361,28 @@
     - `components/search/file-search-results.tsx`: File search results component
     - `lib/utils/search-files.ts`: File search utility
   - **Step Dependencies**: Step 32
+  - **User Instructions**: None
+
+## Mobile Responsiveness
+
+- [ ] Step 34: Implement responsive sidebar
+  - **Task**: Make the sidebar responsive for mobile devices
+  - **Files**:
+    - `components/layout/mobile-sidebar.tsx`: Mobile-specific sidebar component
+    - `components/layout/sidebar-toggle.tsx`: Toggle for mobile sidebar
+    - `hooks/use-sidebar.ts`: Hook for sidebar state management
+    - `components/layout/main-layout.tsx`: Update to support mobile view
+  - **Step Dependencies**: Step 14
+  - **User Instructions**: None
+
+- [ ] Step 35: Implement responsive message views
+  - **Task**: Make message views responsive for mobile devices
+  - **Files**:
+    - `components/messages/message-list.tsx`: Update for mobile responsiveness
+    - `components/messages/message-item.tsx`: Update for mobile responsiveness
+    - `components/channels/channel-header.tsx`: Update for mobile responsiveness
+    - `components/direct-messages/dm-header.tsx`: Update for mobile responsiveness
+  - **Step Dependencies**: Step 34
   - **User Instructions**: None
 
 ## Final Integration
