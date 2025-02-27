@@ -10,23 +10,25 @@ import * as dotenv from 'dotenv';
 // Load environment variables from .env.local
 dotenv.config({ path: '.env.local' });
 
-if (!process.env.DATABASE_URL) {
-  // Construct from Supabase URL if DATABASE_URL is not directly provided
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  
-  if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Missing required environment variables for database connection');
-  }
-  
-  process.env.DATABASE_URL = `postgres://postgres.${supabaseUrl.split('//')[1]}:${supabaseKey}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`;
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+  throw new Error("NEXT_PUBLIC_SUPABASE_URL is not defined");
 }
 
+// Extract database URL from Supabase URL
+const dbUrl = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL);
+const hostname = dbUrl.hostname;
+const database = hostname.split(".")[0];
+
 export default {
-  schema: './db/schema/*',
+  schema: './db/schema.ts',
   out: './drizzle',
-  driver: 'pg',
+  dialect: 'postgresql',
+  driver: 'pglite',       // <-- Updated driver to one of the allowed values for PostgreSQL
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL,
-  },
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'postgres',
+    password: process.env.DB_PASSWORD || 'password',
+    database: process.env.DB_NAME || 'slack_clone',
+    // port: 5432, // Uncomment if needed
+  }
 } satisfies Config;
